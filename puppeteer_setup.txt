@@ -1,0 +1,20 @@
+Puppeteer
+
+-installed miniforge instead of conda
+-installed environment, had to downgrade setuptools and wheel for gym
+edit environment.yaml to request stable release instead of nightly (0.3.1)
+pip install "setuptools==65.5.0" "wheel==0.38.4"
+pip install gym==0.21.0
+sed -i 's/torchrl-nightly==[0-9\.]*/torchrl==0.3.1/g' docker/environment.yaml
+sed -i 's/tensordict-nightly==[0-9\.]*/tensordict==0.3.1/g' docker/environment.yaml
+
+
+Created folder /scratch/ccm141/mocapact/ to download MoCapAct training data(through Hugging Face, as the download_dataset.sh file is outdated)
+Deleted cached hugging face data and tar files
+tar -xzf <archive> -C /scratch/ccm141/mocapact
+In config.yaml:
+data_dir: /scratch/ccm141/mocapact/small so data_dir points to scratch storage
+Changed save_freq to 10_000 in config.yaml, to allow for issues with Amarel cluster
+
+In logger.py: /home/ccm141/puppeteer/puppeteer/logger.py
+In __init__ function, 
