@@ -1,10 +1,12 @@
 Puppeteer training, for tracking world model on Amarel cluster (RHEL 9.6). Also tested setup phase (not training) on iLab on Ubuntu 22.04
-
--installed miniforge instead of conda
--installed environment, had to downgrade setuptools and wheel for gym
-edit environment.yaml to request stable release instead of nightly (0.3.1)
+Notes for initial installation and packages:
+-Install miniforge instead of conda to run on Amarel/iLab
+-When installing, have to downgrade setuptools and wheel for gym
 pip install "setuptools==65.5.0" "wheel==0.38.4"
 pip install gym==0.21.0
+
+Edit environment.yaml to request stable release instead of nightly for TorchRL, TensorDict (0.3.1)
+
 sed -i 's/torchrl-nightly==[0-9\.]*/torchrl==0.3.1/g' docker/environment.yaml
 sed -i 's/tensordict-nightly==[0-9\.]*/tensordict==0.3.1/g' docker/environment.yaml
 
